@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: nowadays-apparelmagic-mcp
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: APPARELMAGIC_API_KEY
+        sync: false
+      - key: OAUTH_ADMIN_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: UPSTREAM_MCP_URL
+        value: https://api.apparelmagic.com/mcp
+      - key: OAUTH_SCOPE
+        value: mcp:tools:read
